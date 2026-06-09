@@ -14,9 +14,9 @@ These are the historical anchor materials from the original project.
 
 - `Data/`: chess participant CSV files.
 - `Code/`: original MATLAB data and scripts.
-- `original_model.pdf`: original confidence-model paper.
-- `data_paper.pdf`: paper associated with the original data.
-- `comparison_analysis.md`: older comparison notes. The file appears to have
+- `legacy_chess/papers/original_model.pdf`: original confidence-model paper.
+- `legacy_chess/papers/data_paper.pdf`: paper associated with the original data.
+- `archive/old_notes/comparison_analysis.md`: older comparison notes. The file appears to have
   mojibake/encoding issues but still documents the original-vs-extended model
   contrast.
 
@@ -44,9 +44,9 @@ confidence and self-confidence.
 ### 3. Improved chess model
 
 This is the modeling contribution developed from the chess data and associated
-with `my_paper.pdf`.
+with `chess_model/papers/my_paper.pdf`.
 
-- `my_paper.pdf`: conference paper based on the improved model.
+- `chess_model/papers/my_paper.pdf`: conference paper based on the improved model.
 - `Paper_fig/full_model.py`: main physics-style confidence dynamics model.
 - `Paper_fig/og_model.py`: original model comparison inside the figure pipeline.
 - `Paper_fig/physics_*.py`, `Paper_fig/phys_noB.py`, `Paper_fig/og_physics.py`:
@@ -89,4 +89,3 @@ documentation-first so the analyses remain reproducible.
 
 If files are moved later, update paths in the scripts first or introduce a
 central path configuration.
-

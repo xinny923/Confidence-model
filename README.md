@@ -18,11 +18,17 @@ coupling.
 
 - `Data/` and `Code/`: legacy chess data and MATLAB code from the original
   project.
+- `legacy_chess/`: historical papers and notes for the original chess study.
+- `chess_model/`: papers and documentation for the improved chess-derived
+  confidence model.
 - `benchmark.py` and `original_common.py`: Python reproduction of the original
   Chong-style confidence model on the chess data.
 - `Paper_fig/`: model variants, paper figures, and chess-model outputs.
 - `truss_data/`: truss dataset, reconstructed detailed action records, baseline
   benchmarks, detailed model fits, and validation outputs.
+- `truss_validation/`: documentation stub for the current truss validation
+  research line.
+- `archive/`: old notes and extracted text artifacts.
 - `outputs_extended/`: earlier extended-model outputs.
 
 ## Recommended Starting Points
@@ -41,4 +47,3 @@ The truss validation currently supports the improved dynamic model:
 
 In these outputs, the detailed physics model (`PHYS-FULL-DETAILED`) improves
 over the original baseline (`BASELINE-OG`) on truss condition-mean fit metrics.
-
