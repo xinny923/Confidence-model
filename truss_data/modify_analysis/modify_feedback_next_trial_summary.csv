@@ -1,0 +1,3 @@
+positive_feedback,n,next_positive_feedback_rate,next_delta_ai_mean,next_delta_self_mean
+0,385,0.4155844155844156,0.02207792207792208,0.033766233766233764
+1,200,0.335,-0.0325,-0.05
