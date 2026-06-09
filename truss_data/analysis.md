@@ -84,3 +84,142 @@ event rather than only as a performance outcome. Positive modify feedback
 increases both AI-confidence and self-confidence relative to negative modify
 feedback, with a stronger and more reliable effect on self-confidence.
 
+## Non-Monotonic Confidence Recalibration
+
+### Question
+
+Do opposite-direction confidence updates reflect relative recalibration between
+AI-confidence and self-confidence?
+
+Opposite-direction, or split, updates are defined as:
+
+```text
+AI_up_self_down: AI-confidence increases while self-confidence decreases
+AI_down_self_up: AI-confidence decreases while self-confidence increases
+```
+
+Monotonic nonzero updates are defined as:
+
+```text
+AI_up_self_up
+AI_down_self_down
+```
+
+### Data
+
+Source file:
+
+- `truss_data/modify_analysis/trial_level_modify_analysis.csv`
+
+Analysis outputs:
+
+- `truss_data/modify_analysis/conjugate_logistic_bootstrap_summary.csv`
+- `truss_data/modify_analysis/split_vs_monotonic_abs_gap_test.csv`
+- `truss_data/modify_analysis/modify_vs_nonmodify_coupling_bootstrap_summary.csv`
+
+The main analyses use nonzero confidence-update trials only:
+
+- split updates: 268 trials
+- monotonic updates: 411 trials
+
+### Prior Imbalance
+
+Split updates occurred when the prior AI/self confidence imbalance was much
+larger than in monotonic updates.
+
+```text
+mean abs(self_before - ai_before)
+
+split updates:    0.395
+monotonic updates: 0.111
+difference:       0.283
+```
+
+Tests:
+
+- Welch test: p = 5.53e-44
+- participant-cluster bootstrap CI for the difference: [0.243, 0.323]
+- participant-cluster bootstrap p = 0.00664
+
+### Direction Of Split Updates
+
+Among split updates, the prior self-minus-AI confidence gap strongly predicted
+which direction the split took.
+
+Model:
+
+```text
+AI_up_self_down vs AI_down_self_up
+```
+
+Key predictor:
+
+```text
+prior_gap = self_before - ai_before
+```
+
+Result:
+
+- coefficient for prior_gap: +21.91
+- bootstrap CI: [19.16, 33.99]
+- bootstrap p = 0.00664
+
+This means positive prior gap strongly predicts `AI_up_self_down`, while
+negative prior gap predicts `AI_down_self_up`.
+
+### Reject-Negative Concentration
+
+`AI_up_self_down` updates were also associated with the combination of rejecting
+the AI and receiving negative feedback.
+
+Model:
+
+```text
+AI_up_self_down vs other nonzero confidence updates
+```
+
+Key result:
+
+- reject x negative feedback coefficient: +4.45
+- bootstrap CI: [1.72, 9.36]
+- bootstrap p = 0.00664
+
+The prior gap remained strongly positive in the same model:
+
+- prior_gap coefficient: +10.62
+- bootstrap CI: [8.28, 16.48]
+- bootstrap p = 0.00664
+
+### Modify Coupling
+
+AI/self confidence deltas were more strongly coupled in modify trials than in
+non-modify trials.
+
+```text
+Pearson r(delta_ai, delta_self)
+
+modify trials:     0.297
+non-modify trials: 0.060
+difference:        0.238
+```
+
+Participant-cluster bootstrap:
+
+- difference in r CI: [0.082, 0.416]
+- difference in Fisher z CI: [0.085, 0.460]
+- bootstrap p = 0.00664
+
+### Summary Observation
+
+Split confidence updates are associated with larger prior imbalance between
+self-confidence and AI-confidence. The sign of the prior gap predicts the
+direction of the split update, and modify trials show stronger coupling between
+the two confidence channels than non-modify trials.
+
+### Conclusion
+
+Non-monotonic confidence updates support a relative recalibration interpretation:
+when one confidence channel is much higher than the other, subsequent feedback
+can shift confidence away from the initially dominant channel and toward the
+other channel. This effect is strongest and cleanest for the
+`AI_up_self_down` pattern following reject-and-negative-feedback events.

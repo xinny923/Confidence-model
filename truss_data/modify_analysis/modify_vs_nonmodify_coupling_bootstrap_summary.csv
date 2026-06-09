@@ -1,0 +1,2 @@
+comparison,modify_r,non_modify_r,diff_r,diff_r_ci_low,diff_r_ci_high,diff_fisher_z,diff_fisher_z_ci_low,diff_fisher_z_ci_high,bootstrap_p,n_boot
+modify_minus_non_modify_ai_self_delta_correlation,0.297229559785536,0.05952494388617021,0.23770461589936578,0.08233251133751159,0.4162486169971555,0.2468825360451523,0.08464522458582678,0.46021681661820646,0.006644518272425249,300

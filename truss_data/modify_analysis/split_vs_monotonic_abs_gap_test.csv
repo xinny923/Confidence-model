@@ -1,0 +1,2 @@
+comparison,split_n,monotonic_n,split_mean,monotonic_mean,difference,welch_t,welch_p,cluster_boot_ci_low,cluster_boot_ci_high,cluster_boot_p,n_boot
+abs_prior_gap_split_minus_monotonic,268,411,0.394589552238806,0.11131386861313869,0.2832756836256673,15.748410356890936,5.529051107999612e-44,0.24270816297020223,0.32294358126901235,0.006644518272425249,300
