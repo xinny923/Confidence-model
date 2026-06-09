@@ -1,0 +1,2 @@
+channel,test,parameters,statistic,permutation_p,n_chess,n_truss
+self,multivariate_standardized_mean_vector_distance,"alpha_fast,alpha_slow,alpha_a,omega1,omega2,omega3,omega4,gamma_res",2.6261147305857238,1.999960000799984e-05,100,100

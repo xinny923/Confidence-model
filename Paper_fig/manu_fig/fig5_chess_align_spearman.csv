@@ -1,0 +1,5 @@
+channel,x,y,pearson_r,pearson_p,spearman_rho,spearman_p,n_trials
+AI channel,align_count,aggregate_prediction_improvement,0.3084224073988815,0.11030619808167971,0.23351821072857185,0.23171703931250529,28
+AI channel,empirical_abs_delta,aggregate_prediction_improvement,0.12500129548016048,0.5262234474522112,0.1933547067764125,0.3242144879279775,28
+Self channel,align_count,aggregate_prediction_improvement,0.22628051218120107,0.2469177021891619,0.21950711808485754,0.26172550814362383,28
+Self channel,empirical_abs_delta,aggregate_prediction_improvement,-0.0017023964793400988,0.9931402619371357,0.1244000189193233,0.5282309154961061,28

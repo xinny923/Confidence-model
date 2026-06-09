@@ -1,0 +1,7 @@
+dataset,trigger,n,next_accept_rate
+chess,other,2506.0,0.5522745411013568
+chess,reject_positive,394.0,0.3629441624365482
+chess,reject_positive_minus_other,,-0.18933037866480856
+truss,other,2557.0,0.40359796636683615
+truss,reject_positive,343.0,0.27696793002915454
+truss,reject_positive_minus_other,,-0.1266300363376816

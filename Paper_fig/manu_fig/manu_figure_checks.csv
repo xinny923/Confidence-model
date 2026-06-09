@@ -1,0 +1,20 @@
+check,value
+Fig3 d sweep uses only modify trials,144.0
+Fig3 AI best d,0.2
+Fig3 self best d,0.5
+Fig5 mean align abs error Baseline Model AI channel,0.06132525200864219
+Fig5 mean align abs error Baseline Model Self channel,0.08871792932746185
+Fig5 mean align abs error Reformulated Model AI channel,0.053637932285697604
+Fig5 mean align abs error Reformulated Model Self channel,0.047164971270811915
+Fig5 total alignment cases,287.0
+Fig4 modify experimental d(a),0.04861111111111111
+Fig5 Spearman improvement vs align_count AI channel,0.23351821072857185
+Fig5 Pearson improvement vs align_count AI channel,0.3084224073988815
+Fig5 Spearman improvement vs align_count Self channel,0.21950711808485754
+Fig5 Pearson improvement vs align_count Self channel,0.22628051218120107
+Fig5 regression interaction AI channel,0.008850511435418804
+Fig5 regression interaction Self channel,0.061381311150634894
+Fig5 case regression interaction AI channel,-3.14177516680756e-05
+Fig5 case regression interaction p AI channel,0.9677640233464511
+Fig5 case regression interaction Self channel,0.006105373846881601
+Fig5 case regression interaction p Self channel,0.002308934824773591

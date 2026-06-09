@@ -1,0 +1,3 @@
+condition,participants,trial_rows,usable_rows,suggestion_available,move1_available,move2_available
+1,8,240,240,240,240,240
+2,12,360,346,348,359,359
