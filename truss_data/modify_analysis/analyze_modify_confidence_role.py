@@ -298,6 +298,51 @@ def confidence_coupling(df: pd.DataFrame) -> None:
     pd.DataFrame(rows).to_csv(OUTPUT_DIR / "confidence_channel_coupling_summary.csv", index=False)
 
 
+def confidence_quadrant_contexts(df: pd.DataFrame) -> None:
+    samples = [
+        ("all_trials", df),
+        ("modify_trials", df[df["action"] == "modify"]),
+        ("non_aligned_trials", df[df["align"] == 0]),
+        ("non_aligned_modify_trials", df[(df["align"] == 0) & (df["action"] == "modify")]),
+    ]
+    quadrant_order = [
+        "AI_up_self_up",
+        "AI_down_self_down",
+        "AI_up_self_down",
+        "AI_down_self_up",
+        "flat_or_mixed_zero",
+    ]
+    rows = []
+    for sample_name, sample in samples:
+        total = sample.shape[0]
+        for quadrant in quadrant_order:
+            group = sample[sample["quadrant"] == quadrant]
+            if group.empty:
+                continue
+            action_rates = group["action"].value_counts(normalize=True)
+            rows.append({
+                "sample": sample_name,
+                "quadrant": quadrant,
+                "n": int(group.shape[0]),
+                "share_of_sample": float(group.shape[0] / total) if total else np.nan,
+                "n_participants": int(group["participant"].nunique()),
+                "positive_feedback_rate": float(group["positive_feedback"].mean()),
+                "condition2_rate": float((group["condition"] == 2).mean()),
+                "align_rate": float(group["align"].mean()),
+                "accept_ai_rate": float(action_rates.get("accept_ai", 0.0)),
+                "reject_ai_rate": float(action_rates.get("reject_ai", 0.0)),
+                "modify_rate": float(action_rates.get("modify", 0.0)),
+                "ai_before_mean": float(group["ai_before"].mean()),
+                "self_before_mean": float(group["self_before"].mean()),
+                "gap_self_minus_ai_before_mean": float((group["self_before"] - group["ai_before"]).mean()),
+                "delta_ai_mean": float(group["delta_ai"].mean()),
+                "delta_self_mean": float(group["delta_self"].mean()),
+                "team_score_mean": float(group["team_score"].mean()),
+                "individual_score_mean": float(group["individual_score"].mean()),
+            })
+    pd.DataFrame(rows).to_csv(OUTPUT_DIR / "confidence_quadrant_context_summary.csv", index=False)
+
+
 def main() -> None:
     df = pd.read_csv(TRIAL_PATH)
     confidence_effects(df)
@@ -305,6 +350,7 @@ def main() -> None:
     subtype_robustness(df)
     alignment_counts(df)
     confidence_coupling(df)
+    confidence_quadrant_contexts(df)
     print(f"Saved modify confidence-role outputs to {OUTPUT_DIR}")
 
 
