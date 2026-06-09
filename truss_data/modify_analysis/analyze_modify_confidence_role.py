@@ -343,6 +343,39 @@ def confidence_quadrant_contexts(df: pd.DataFrame) -> None:
     pd.DataFrame(rows).to_csv(OUTPUT_DIR / "confidence_quadrant_context_summary.csv", index=False)
 
 
+def all_quadrant_behavior_summary(df: pd.DataFrame) -> None:
+    quadrant_order = [
+        "AI_up_self_up",
+        "AI_down_self_down",
+        "AI_up_self_down",
+        "AI_down_self_up",
+    ]
+    rows = []
+    nonzero = df[df["quadrant"].isin(quadrant_order)].copy()
+    for quadrant in quadrant_order:
+        group = nonzero[nonzero["quadrant"] == quadrant]
+        action_counts = group["action"].value_counts()
+        rows.append({
+            "quadrant": quadrant,
+            "n_trials": int(group.shape[0]),
+            "share_of_nonzero_quadrant_trials": float(group.shape[0] / nonzero.shape[0]),
+            "n_participants": int(group["participant"].nunique()),
+            "accept_ai_n": int(action_counts.get("accept_ai", 0)),
+            "reject_ai_n": int(action_counts.get("reject_ai", 0)),
+            "modify_n": int(action_counts.get("modify", 0)),
+            "accept_ai_percent": float(100.0 * action_counts.get("accept_ai", 0) / group.shape[0]),
+            "reject_ai_percent": float(100.0 * action_counts.get("reject_ai", 0) / group.shape[0]),
+            "modify_percent": float(100.0 * action_counts.get("modify", 0) / group.shape[0]),
+            "positive_feedback_percent": float(100.0 * group["positive_feedback"].mean()),
+            "condition2_percent": float(100.0 * (group["condition"] == 2).mean()),
+            "align_percent": float(100.0 * group["align"].mean()),
+            "ai_before_mean": float(group["ai_before"].mean()),
+            "self_before_mean": float(group["self_before"].mean()),
+            "gap_self_minus_ai_before_mean": float((group["self_before"] - group["ai_before"]).mean()),
+        })
+    pd.DataFrame(rows).to_csv(OUTPUT_DIR / "all_confidence_quadrant_behavior_summary.csv", index=False)
+
+
 def main() -> None:
     df = pd.read_csv(TRIAL_PATH)
     confidence_effects(df)
@@ -351,6 +384,7 @@ def main() -> None:
     alignment_counts(df)
     confidence_coupling(df)
     confidence_quadrant_contexts(df)
+    all_quadrant_behavior_summary(df)
     print(f"Saved modify confidence-role outputs to {OUTPUT_DIR}")
 
 
